@@ -64,22 +64,22 @@ const StartServer = () => {
   /** Cron Jon to Generate Weekly Report */
   const cronSchedule = config.cronSchedule;
 
-  // cron.schedule(
-  //   cronSchedule,
-  //   async () => {
-  //     Logging.info(`<-- Weekly Report Generation Cron Job Started -->`);
-  //     try {
-  //       await generateWeeklyReport();
-  //       console.log("Weekly report generated successfully.");
-  //     } catch (error) {
-  //       console.error("Error generating weekly report:", error);
-  //     }
-  //     Logging.info(`<-- Weekly Report Generation Cron Job Completed -->`);
-  //   },
-  //   {
-  //     timezone: "Asia/Kolkata",
-  //   }
-  // );
+  cron.schedule(
+    cronSchedule,
+    async () => {
+      Logging.info(`<-- Weekly Report Generation Cron Job Started -->`);
+      try {
+        await generateWeeklyReport();
+        console.log("Weekly report generated successfully.");
+      } catch (error) {
+        console.error("Error generating weekly report:", error);
+      }
+      Logging.info(`<-- Weekly Report Generation Cron Job Completed -->`);
+    },
+    {
+      timezone: "Asia/Kolkata",
+    }
+  );
 
   http
     .createServer(router)
